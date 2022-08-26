@@ -1,4 +1,3 @@
-
 -- Root file for Bootstrapping Neovim plugins
 -- and associated config
 
@@ -6,8 +5,10 @@ require "user.alpha"
 require "user.options"
 require "user.keymaps"
 require "user.plugins"
+require "user.gitsigns"
 require "user.autocommands"
 require "user.cmp"
+require "user.telescope"
 require "user.bufferline"
 require "user.colorscheme"
 require "user.treesitter"

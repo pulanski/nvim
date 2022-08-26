@@ -17,8 +17,13 @@ null_ls.setup {
       extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" },
     },
     formatting.black.with { extra_args = { "--fast" } },
-    formatting.stylua,
-    formatting.google_java_format,
-    diagnostics.flake8,
+    formatting.stylua,             -- lua
+    formatting.markdownlint,       -- markdown
+    formatting.nginx_beautifier,   -- nginx
+    formatting.prismaFMT,          -- prisma (schema)
+    formatting.protolint,          -- protobuf
+    formatting.rustfmt,            -- rust
+    formatting.google_java_format, -- java
+    diagnostics.flake8,            -- python
   },
 }
