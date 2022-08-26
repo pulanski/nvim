@@ -1,3 +1,7 @@
+
+-- Root file for Bootstrapping Neovim plugins
+-- and associated config
+
 require "user.alpha"
 require "user.options"
 require "user.keymaps"
@@ -13,3 +17,7 @@ require "user.lsp"
 require "user.whichkey"
 require "user.lualine"
 require "user.icons"
+require "user.toggleterm"
+require "user.indentline"
+require "user.comment"
+require "user.copilot"

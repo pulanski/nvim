@@ -15,33 +15,38 @@ local check_backspace = function()
 	return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
 end
 
-local kind_icons = {
-	Text = "",
-	Method = "",
-	Function = "",
-	Constructor = "",
-	Field = "",
-	Variable = "",
-	Class = "",
-	Interface = "",
-	Module = "",
-	Property = "",
-	Unit = "",
-	Value = "",
-	Enum = "",
-	Keyword = "",
-	Snippet = "",
-	Color = "",
-	File = "",
-	Reference = "",
-	Folder = "",
-	EnumMember = "",
-	Constant = "",
-	Struct = "",
-	Event = "",
-	Operator = "",
-	TypeParameter = "",
-}
+local icons = require "user.icons"
+local kind_icons = icons.kind
+
+vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
+
+-- local kind_icons = {
+-- 	Text = "",
+-- 	Method = "",
+-- 	Function = "",
+-- 	Constructor = "",
+-- 	Field = "",
+-- 	Variable = "",
+-- 	Class = "",
+-- 	Interface = "",
+-- 	Module = "",
+-- 	Property = "",
+-- 	Unit = "",
+-- 	Value = "",
+-- 	Enum = "",
+-- 	Keyword = "",
+-- 	Snippet = "",
+-- 	Color = "",
+-- 	File = "",
+-- 	Reference = "",
+-- 	Folder = "",
+-- 	EnumMember = "",
+-- 	Constant = "",
+-- 	Struct = "",
+-- 	Event = "",
+-- 	Operator = "",
+-- 	TypeParameter = "",
+-- }
 
 cmp.setup({
 	snippet = {
@@ -95,8 +100,16 @@ cmp.setup({
 	formatting = {
 		fields = { "kind", "abbr", "menu" },
 		format = function(entry, vim_item)
+      -- kind_icons
 			vim_item.kind = kind_icons[vim_item.kind]
-			vim_item.menu = ({
+
+      -- if entry.source.name == "copilot" then
+      --   vim_item.kind = icons.git.Octoface
+      --   vim_item.kind_hl_group = "CmpItemKindCopilot"
+      -- end
+
+      -- NOTE: order matters
+      vim_item.menu = ({
 				nvim_lsp = "",
 				nvim_lua = "",
 				luasnip = "",
@@ -108,6 +121,7 @@ cmp.setup({
 		end,
 	},
 	sources = {
+    -- { name = "copilot" },
 		{ name = "nvim_lsp" },
 		{ name = "nvim_lua" },
 		{ name = "luasnip" },

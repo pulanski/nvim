@@ -68,6 +68,10 @@ return packer.startup(function(use)
   use { "saadparwaiz1/cmp_luasnip", commit = "a9de941bcbda508d0a45d28ae366bb3f08db2e36" } -- snippet completions
   use { "hrsh7th/cmp-nvim-lsp", commit = "affe808a5c56b71630f17aa7c38e15c59fd648a8" }
   use { "hrsh7th/cmp-nvim-lua", commit = "d276254e7198ab7d00f117e88e223b4bd8c02d21" }
+  -- use {
+  --  "zbirenbaum/copilot-cmp",
+  --  module = "copilot-cmp",
+  -- }
 
   -- snippets
   use { "L3MON4D3/LuaSnip", commit = "79b2019c68a2ff5ae4d732d50746c901dd45603a" } --snippet engine
@@ -95,6 +99,22 @@ return packer.startup(function(use)
   use { "mfussenegger/nvim-dap", commit = "014ebd53612cfd42ac8c131e6cec7c194572f21d" }
   use { "rcarriga/nvim-dap-ui", commit = "d76d6594374fb54abf2d94d6a320f3fd6e9bb2f7" }
   use { "ravenxrz/DAPInstall.nvim", commit = "8798b4c36d33723e7bba6ed6e2c202f84bb300de" }
+
+  -- Copilot
+  use "github/copilot.vim"
+
+  -- create a simple game where a user can guess a number
+
+  -- use {
+  --  "zbirenbaum/copilot.lua",
+  --  event = { "VimEnter" },
+  --  config = function ()
+  --   vim.defer_fn(function ()
+  --      require("user.copilot")
+  --    end, 1000)
+  --  end
+  -- }
+  
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
