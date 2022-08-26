@@ -30,7 +30,7 @@ null_ls.setup {
         ------------------------------------------------------------------
         -- Systems-level dev                                            --
         --                                                              --
-        -- go -> gofmt                                                  --
+        -- go -> gofumpt                                                --
         -- rust -> rustfmt                                              --
         ------------------------------------------------------------------
         -- General purpose programming / dev                            --
@@ -59,7 +59,7 @@ null_ls.setup {
         formatting.swiftformat, -- swift
 
         formatting.rustfmt, -- rust
-        formatting.gofmt, -- go
+        formatting.gofumpt, -- go
 
         formatting.black.with { extra_args = { "--fast" } }, -- python
         formatting.stylua, -- lua
@@ -72,20 +72,22 @@ null_ls.setup {
         -------------------------------------------------------------
         -- Diangostics for various languages/libs/tools/frameworks --
         --                                                         --
-        -- js/ts -> prettier, eslint                               --
+        -- js/ts -> eslint, tsc                                    --
+        -- css, scss, sass, less -> stylelint                      --
         -- python -> flake8                                        --
-        -- lua -> stylua                                           --
-        -- markdown -> markdownlint                                --
-        -- nginx -> nginx_beautifier                               --
-        -- prisma -> prismaFMT                                     --
-        -- protobuf -> protobuf                                    --
-        -- rust -> rustfmt                                         --
-        -- java -> google_java_format                              --
+        -- (c#, go, java, js, jsx, json, php, python,              --
+        -- ruby, scala, ts, tsx) -> semgrep                        --
+        -- go -> revive                                            --
+        -- sh -> shellcheck                                        --
+        -- zsh -> zsh                                              --
         -------------------------------------------------------------
-
+        diagnostics.eslint, -- js/ts
+        diagnostics.tsc, -- parses diagnostics from the ts compiler
+        diagnostics.stylelint, -- css, scss, sass, less
         diagnostics.flake8, -- python
-        diagnostics.eslint,
-        diagnostics.semgrep,
-        diagnostics.tsc,
+        diagnostics.semgrep, -- c#, go, java, js, jsx, json, php, python, ruby, scala, ts, tsx
+        diagnostics.revive, -- go
+        diagnostics.shellcheck, -- sh
+        diagnostics.zsh, -- zsh
     },
 }
