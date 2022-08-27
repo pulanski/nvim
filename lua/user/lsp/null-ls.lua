@@ -15,7 +15,7 @@ null_ls.setup {
         -- Formatting tools for various languages/libs/tools/frameworks --
         ------------------------------------------------------------------
         -- Web dev                                                      --
-        -- (js/ts, react, svelte, astro, tailwind, prisma, deno)        --
+        -- (js/ts, react, tailwind, prisma, deno)                       --
         --                                                              --
         -- js/ts -> prettier, eslint, stylelint                         --
         -- tailwind classes -> rustywind                                --
@@ -27,21 +27,22 @@ null_ls.setup {
         --                                                              --
         -- dart/flutter -> dart_format                                  --
         -- swift -> swiftformat                                         --
+        -- kotlin -> ktlint                                             --
         ------------------------------------------------------------------
         -- Systems-level dev                                            --
         --                                                              --
         -- go -> gofumpt                                                --
         -- rust -> rustfmt                                              --
         ------------------------------------------------------------------
-        -- General purpose programming / dev                            --
+        -- Scripting / General purpose dev                              --
         --                                                              --
         -- python -> black                                              --
         -- lua -> stylua                                                --
-        -- markdown -> markdownlint                                     --
         ------------------------------------------------------------------
         -- Other TODO                                                   --
         --                                                              --
         -- nginx -> nginx_beautifier                                    --
+        -- markdown -> markdownlint                                     --
         -- protobuf -> protobuf                                         --
         -- java -> google_java_format                                   --
         ------------------------------------------------------------------
@@ -57,6 +58,7 @@ null_ls.setup {
 
         formatting.dart_format, -- dart/flutter
         formatting.swiftformat, -- swift
+        formatting.ktlint, -- kotlin
 
         formatting.rustfmt, -- rust
         formatting.gofumpt, -- go
@@ -80,6 +82,8 @@ null_ls.setup {
         -- go -> revive                                            --
         -- sh -> shellcheck                                        --
         -- zsh -> zsh                                              --
+        -- fish -> fish                                            --
+        -- editorconfig_checker -> editorconfig                    --
         -------------------------------------------------------------
         diagnostics.eslint, -- js/ts
         diagnostics.tsc, -- parses diagnostics from the ts compiler
@@ -87,7 +91,17 @@ null_ls.setup {
         diagnostics.flake8, -- python
         diagnostics.semgrep, -- c#, go, java, js, jsx, json, php, python, ruby, scala, ts, tsx
         diagnostics.revive, -- go
+        diagnostics.gccdiag, -- c/c++
+        diagnostics.cppcheck, -- c/c++
         diagnostics.shellcheck, -- sh
+        -- TODO (currently broken) diagnostics.selene, -- lua
         diagnostics.zsh, -- zsh
+        diagnostics.fish, -- fish
+        diagnostics.buff, -- protobuf
+        diagnostics.cspell, -- spell check
+        diagnostics.ansiblelint, -- ansible
+        diagnostics.actionlint, -- github actions
+        diagnostics.buildifier -- buildifier (Bazel)
+        -- TODO (currently broken) diagnostics.editorconfig_checker, -- editorconfig
     },
 }
