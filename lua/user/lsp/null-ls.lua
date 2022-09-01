@@ -14,11 +14,84 @@ null_ls.setup {
         ------------------------------------------------------------------
         -- Formatting tools for various languages/libs/tools/frameworks --
         ------------------------------------------------------------------
+
         -- Web dev                                                      --
         -- (js/ts, react, tailwind, prisma, deno)                       --
+
+        -- JS/TS
+        formatting.eslint,
+        formatting.prettier.with {
+            extra_filetypes = { "toml" },
+            extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" },
+        },
+        formatting.stylelint,
+        -- Tailwind (classes)
+        formatting.rustywind,
+        -- Prisma
+        formatting.prismaFMT,
+        -- Deno
+        formatting.deno_fmt,
+
+        -- Mobile / Cross-platform dev                                  --
+        -- (flutter, kotlin, swift)                                     --
         --                                                              --
-        -- js/ts -> prettier, eslint, stylelint                         --
-        -- tailwind classes -> rustywind                                --
+        -- dart/flutter -> dart_format                                  --
+        -- swift -> swiftformat                                         --
+        -- kotlin -> ktlint                                             --
+
+        -- dart/flutter
+        formatting.dart_format,
+        -- swift
+        formatting.swiftformat,
+        -- kotlin
+        formatting.ktlint,
+
+        -- Systems-level dev
+        --
+        -- go -> gofumpt
+        -- rust -> rustfmt
+
+        -- rust
+        formatting.rustfmt,
+        -- go
+        formatting.gofumpt,
+
+        -- Scripting / General purpose dev
+        --
+        -- python -> black
+        -- elixir -> mix
+        -- lua -> stylua
+
+        -- python
+        formatting.black.with { extra_args = { "--fast" } },
+        -- elixir
+        formatting.mix,
+        -- lua
+        formatting.stylua,
+
+        ------------------------------------------------------------------
+        -- Other TODO                                                   --
+        --                                                              --
+        -- nginx -> nginx_beautifier                                    --
+        -- markdown -> markdownlint                                     --
+        -- protobuf -> protobuf                                         --
+        -- java -> google_java_format                                   --
+        ------------------------------------------------------------------
+
+        formatting.markdownlint, -- markdown
+        formatting.nginx_beautifier, -- nginx
+        formatting.protolint, -- protobuf
+        formatting.google_java_format, -- java
+
+        -------------------------------------------------------------
+        -- Diangostics for various languages/libs/tools/frameworks --
+        --                                                         --
+        -- Web dev                                                 --
+        -- (js/ts, react, tailwind, prisma, deno, scss, etc.)      --
+        --                                                         --
+        -- css, scss, sass, less -> stylelint                      --
+        -- js/ts -> prettier, eslint, stylelint                    --
+        -- tailwind classes -> rustywind                           --
         -- prisma -> prismaFMT                                          --
         -- deno -> deno_fmt                                             --
         ------------------------------------------------------------------
@@ -37,6 +110,7 @@ null_ls.setup {
         -- Scripting / General purpose dev                              --
         --                                                              --
         -- python -> black                                              --
+        -- elixir -> mix                                                --
         -- lua -> stylua                                                --
         ------------------------------------------------------------------
         -- Other TODO                                                   --
@@ -45,37 +119,7 @@ null_ls.setup {
         -- markdown -> markdownlint                                     --
         -- protobuf -> protobuf                                         --
         -- java -> google_java_format                                   --
-        ------------------------------------------------------------------
-        formatting.eslint, -- js/ts
-        formatting.prettier.with { -- js/ts
-            extra_filetypes = { "toml" },
-            extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" },
-        },
-        formatting.stylelint, -- js/ts
-        formatting.rustywind, -- tailwind classes
-        formatting.prismaFMT, -- prisma (schema)
-        formatting.deno_fmt, -- deno
 
-        formatting.dart_format, -- dart/flutter
-        formatting.swiftformat, -- swift
-        formatting.ktlint, -- kotlin
-
-        formatting.rustfmt, -- rust
-        formatting.gofumpt, -- go
-
-        formatting.black.with { extra_args = { "--fast" } }, -- python
-        formatting.stylua, -- lua
-        formatting.markdownlint, -- markdown
-
-        formatting.nginx_beautifier, -- nginx
-        formatting.protolint, -- protobuf
-        formatting.google_java_format, -- java
-
-        -------------------------------------------------------------
-        -- Diangostics for various languages/libs/tools/frameworks --
-        --                                                         --
-        -- js/ts -> eslint, tsc                                    --
-        -- css, scss, sass, less -> stylelint                      --
         -- python -> flake8                                        --
         -- (c#, go, java, js, jsx, json, php, python,              --
         -- ruby, scala, ts, tsx) -> semgrep                        --
@@ -97,11 +141,12 @@ null_ls.setup {
         -- TODO (currently broken) diagnostics.selene, -- lua
         diagnostics.zsh, -- zsh
         diagnostics.fish, -- fish
-        diagnostics.buff, -- protobuf
-        diagnostics.cspell, -- spell check
+        -- TODO (currently broken) diagnostics.buff, -- protobuf
+        -- TODO (currently broken) diagnostics.cspell, -- spell check
         diagnostics.ansiblelint, -- ansible
         diagnostics.actionlint, -- github actions
-        diagnostics.buildifier -- buildifier (Bazel)
+        diagnostics.buildifier, -- buildifier (Bazel)
+        diagnostics.credo, -- elixir
         -- TODO (currently broken) diagnostics.editorconfig_checker, -- editorconfig
     },
 }
