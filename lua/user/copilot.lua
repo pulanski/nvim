@@ -25,3 +25,5 @@ copilot.setup {
   ft_disable = { "markdown" },
 }
 
+-- Create a game with two players
+
