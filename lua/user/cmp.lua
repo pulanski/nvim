@@ -16,7 +16,6 @@ local check_backspace = function()
 end
 
 local icons = require "user.icons"
--- local kind_icons = icons.kind
 
 vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
 
