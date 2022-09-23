@@ -74,6 +74,9 @@ return packer.startup(function(use)
     --  module = "copilot-cmp",
     -- }
 
+    -- markdown / latex
+    use { "davidgranstrom/nvim-markdown-preview", commit = "3d6f941beb223b23122973d077522e9e2ee33068" }
+
     -- snippets
     --snippet engine
     use { "L3MON4D3/LuaSnip", commit = "79b2019c68a2ff5ae4d732d50746c901dd45603a" }
