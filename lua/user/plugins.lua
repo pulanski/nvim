@@ -58,9 +58,15 @@ return packer.startup(function(use)
     use { "lukas-reineke/indent-blankline.nvim", commit = "6177a59552e35dfb69e1493fd68194e673dc3ee2" }
     use { "goolord/alpha-nvim", commit = "ef27a59e5b4d7b1c2fe1950da3fe5b1c5f3b4c94" }
 
-    -- Colorschemes
+    ------------------
+    -- Colorschemes --
+    ------------------
+
     use { "folke/tokyonight.nvim", commit = "8223c970677e4d88c9b6b6d81bda23daf11062bb" }
     use { "lunarvim/darkplus.nvim", commit = "2584cdeefc078351a79073322eb7f14d7fbb1835" }
+    use { "savq/melange", commit = "78af754ad22828ea3558e2990326b8aa39730918" }
+    use { "ellisonleao/gruvbox.nvim" }
+    use { "bluz71/vim-moonfly-colors" }
 
     -- cmp plugins
     use { "hrsh7th/nvim-cmp", commit = "df6734aa018d6feb4d76ba6bda94b1aeac2b378a" } -- The completion plugin
@@ -74,8 +80,9 @@ return packer.startup(function(use)
     --  module = "copilot-cmp",
     -- }
 
-    -- markdown / latex
+    -- Markdown / LaTeX
     use { "davidgranstrom/nvim-markdown-preview", commit = "3d6f941beb223b23122973d077522e9e2ee33068" }
+    use { "ellisonleao/glow.nvim", commit = "b6b997277e019f751031ea52f9571ad2e1e7e42d" }
 
     -- snippets
     --snippet engine
@@ -91,6 +98,25 @@ return packer.startup(function(use)
     -- for formatters and linters
     use { "jose-elias-alvarez/null-ls.nvim", commit = "ff40739e5be6581899b43385997e39eecdbf9465" }
     use { "RRethy/vim-illuminate", commit = "c82e6d04f27a41d7fdcad9be0bce5bb59fcb78e5" }
+
+    ---------------------------
+    -- Programming Languages --
+    ---------------------------
+
+    use { "simrat39/rust-tools.nvim", commit = "86a2b4e31f504c00715d0dd082a6b8b5d4afbf03" }
+
+    -----------
+    -- Games --
+    -----------
+
+    -- Tetris
+    use { "alec-gibson/nvim-tetris" }
+
+    -- Minesweeper
+    use { "seandewar/nvimesweeper" }
+
+    -- Killersheep
+    use { "seandewar/killersheep.nvim" }
 
     -- Telescope
     use {
