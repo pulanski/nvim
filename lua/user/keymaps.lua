@@ -60,19 +60,20 @@ keymap("v", ">", ">gv", opts)
 -------------
 
 -- NvimTree
-keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
+keymap("n", "<leader>b", ":NvimTreeToggle<CR>", opts)
 
 -- Telescope
 keymap("n", "<leader>f", ":Telescope find_files<CR>", opts)
 keymap("n", "<leader>g", ":Telescope live_grep<CR>", opts)
 -- keymap("n", "<leader>p", ":Telescope projects<CR>", opts)
-keymap("n", "<leader>b", ":Telescope buffers<CR>", opts)
+-- keymap("n", "<leader>b", ":Telescope buffers<CR>", opts)
 
 -- Git
-keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
+-- keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
 
 -- Comment
 keymap("n", "<leader>/", "<cmd>lua require('Comment.api').toggle_current_linewise()<CR>", opts)
+-- Block commenting (ctrl v -> space /)
 keymap("x", "<leader>/", '<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>', opts)
 
 -- DAP
