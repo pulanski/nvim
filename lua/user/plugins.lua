@@ -129,6 +129,20 @@ return packer.startup(function(use)
         requires = { { "nvim-lua/plenary.nvim" } },
     }
 
+    -- nvim-notify
+    use { "rcarriga/nvim-notify" }
+
+    -- <leader>s open spotify tui (spotify-tui)
+    -- <leader>k open kubernetes tui (k9s)
+
+    -- zen mode
+    -- TODO
+
+    -- mkdir.nvim
+    use {
+        "jghauser/mkdir.nvim",
+    }
+
     -- Treesitter
     use { "nvim-treesitter/nvim-treesitter", commit = "518e27589c0463af15463c9d675c65e464efc2fe" }
     use { "nvim-treesitter/nvim-treesitter-context", commit = "3148205c72a535af0493fec7c90a12344ac2f90d" }
