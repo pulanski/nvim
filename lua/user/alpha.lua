@@ -9,25 +9,23 @@ local status_ok, dashboard = pcall(require, "alpha.themes.dashboard")
 if not status_ok then
     return
 end
--- 
---               R RRRRRRRR R          R   
---  R RR       R RRRRRRRRRRRRR R      RR   
--- rR RRR    R RRRRRRRRRRRRRRRRR R   RRR R 
+--
+--               R RRRRRRRR R          R
+--  R RR       R RRRRRRRRRRRRR R      RR
+-- rR RRR    R RRRRRRRRRRRRRRRRR R   RRR R
 -- n)
--- RRR RR   RRRRRRRRRRRRRRRRRRRRRRR  RRRRR 
---  RRRRR  RRRRRRRRRRRRRRRRRRRRRRRR  RRRR  
---   RRR RRRRRRRRRRRRRRRRRRRRRRRRRRRR RR   
---     R  RRRRRRRRRR=  RR = RRRRRRRRRRR    
---      RRRRRRRRRRRR=  RR = RRRRRRRRRR     
---       RRRRRRRRRRR   RR   RRRRRRRRRR     
---      RR==RRRRRRRRRRRRRRRRRRRRRR===RR    
---      RR =  ==RRRRRRR  RRRRRR==  = RR    
---       RR =     ===========     = RR     
---        RR                        R      
---         R                       R       
---          R                              
-
-
+-- RRR RR   RRRRRRRRRRRRRRRRRRRRRRR  RRRRR
+--  RRRRR  RRRRRRRRRRRRRRRRRRRRRRRR  RRRR
+--   RRR RRRRRRRRRRRRRRRRRRRRRRRRRRRR RR
+--     R  RRRRRRRRRR=  RR = RRRRRRRRRRR
+--      RRRRRRRRRRRR=  RR = RRRRRRRRRR
+--       RRRRRRRRRRR   RR   RRRRRRRRRR
+--      RR==RRRRRRRRRRRRRRRRRRRRRR===RR
+--      RR =  ==RRRRRRR  RRRRRR==  = RR
+--       RR =     ===========     = RR
+--        RR                        R
+--         R                       R
+--          R
 
 dashboard.section.header.val = {
     -- [[                             ..]],
@@ -40,7 +38,6 @@ dashboard.section.header.val = {
     -- [[        ..:%::=::::-#################%]],
     -- [[      ....::*#####=##################+]],
     -- [[  ......:==%#########################.]],
-
 
     [[:::#:===+##########################-:.]],
     [[   .....:--%#########################:]],

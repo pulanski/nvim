@@ -132,6 +132,8 @@ return packer.startup(function(use)
     -- nvim-notify
     use { "rcarriga/nvim-notify" }
 
+    -- hlslens
+    use { "kevinhwang91/nvim-hlslens" }
     -- <leader>s open spotify tui (spotify-tui)
     -- <leader>k open kubernetes tui (k9s)
 

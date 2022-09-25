@@ -65,8 +65,11 @@ keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 -- Telescope
 keymap("n", "<leader>f", ":Telescope find_files<CR>", opts)
 keymap("n", "<leader>g", ":Telescope live_grep<CR>", opts)
+keymap("n", "<leader>r", ":Telescope oldfiles<CR>", opts)
 -- keymap("n", "<leader>p", ":Telescope projects<CR>", opts)
 -- keymap("n", "<leader>b", ":Telescope buffers<CR>", opts)
+
+-- Nvim Hlslens
 
 -- Git
 -- keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
