@@ -5,7 +5,8 @@ end
 
 toggleterm.setup {
     size = 8,
-    open_mapping = [[<leader>t]],
+    -- move keymap to main keymaps
+    -- open_mapping = [[<leader>tt]],
     hide_numbers = true,
     shade_terminals = true,
     shading_factor = 1,

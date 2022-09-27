@@ -69,6 +69,9 @@ keymap("n", "<leader>r", ":Telescope oldfiles<CR>", opts)
 -- keymap("n", "<leader>p", ":Telescope projects<CR>", opts)
 -- keymap("n", "<leader>b", ":Telescope buffers<CR>", opts)
 
+-- Toggleterm
+keymap("n", "<leader>t", ":ToggleTerm<CR>", opts)
+
 -- Nvim Hlslens
 
 -- Git

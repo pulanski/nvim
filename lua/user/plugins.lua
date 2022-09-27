@@ -62,6 +62,8 @@ return packer.startup(function(use)
     -- (e.g. :35 will preview or peek line 35 without jumping and can be cancelled)
     use { "nacro90/numb.nvim" }
 
+    use { "simrat39/symbols-outline.nvim" }
+
     ------------------
     -- Colorschemes --
     ------------------
@@ -133,7 +135,14 @@ return packer.startup(function(use)
     use { "rcarriga/nvim-notify" }
 
     -- hlslens
-    use { "kevinhwang91/nvim-hlslens" }
+    use { "kevinhwang91/nvim-hlslens", commit = "b00336ebecc7115740577afa267ff8c26c6b31dc" }
+
+    -- highlight-current-n.nvim
+    use { "rktjmp/highlight-current-n.nvim" }
+
+    -- range-highlight.nvim"
+    use { "winston0410/range-highlight.nvim" }
+
     -- <leader>s open spotify tui (spotify-tui)
     -- <leader>k open kubernetes tui (k9s)
 
