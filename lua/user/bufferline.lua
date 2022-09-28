@@ -75,7 +75,7 @@ bufferline.setup {
         -- },
         --
         tab_selected = {
-            guifg = { attribute = "fg", highlight = "Red" },
+            guifg = { attribute = "fg", highlight = "Normal" },
             guibg = { attribute = "bg", highlight = "Normal" },
         },
         -- tab = {
