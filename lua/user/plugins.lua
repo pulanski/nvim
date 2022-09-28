@@ -86,6 +86,9 @@ return packer.startup(function(use)
     --  module = "copilot-cmp",
     -- }
 
+    -- whichkey
+    use { "folke/which-key.nvim" }
+
     -- Markdown / LaTeX
     use { "davidgranstrom/nvim-markdown-preview", commit = "3d6f941beb223b23122973d077522e9e2ee33068" }
     use { "ellisonleao/glow.nvim", commit = "b6b997277e019f751031ea52f9571ad2e1e7e42d" }
@@ -123,6 +126,9 @@ return packer.startup(function(use)
 
     -- Killersheep
     use { "seandewar/killersheep.nvim" }
+
+    -- Due.nvim
+    use { "NFrid/due.nvim" }
 
     -- Telescope
     use {
