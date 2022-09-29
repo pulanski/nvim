@@ -73,6 +73,7 @@ return packer.startup(function(use)
     use { "savq/melange", commit = "78af754ad22828ea3558e2990326b8aa39730918" }
     use { "ellisonleao/gruvbox.nvim" }
     use { "bluz71/vim-moonfly-colors" }
+    use { "catppuccin/nvim", as = "catppuccin" }
 
     -- cmp plugins
     use { "hrsh7th/nvim-cmp", commit = "df6734aa018d6feb4d76ba6bda94b1aeac2b378a" } -- The completion plugin

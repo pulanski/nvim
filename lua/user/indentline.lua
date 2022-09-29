@@ -10,8 +10,9 @@ vim.cmd [[highlight IndentBlanklineIndent4 guifg=#56B6C2 gui=nocombine]]
 vim.cmd [[highlight IndentBlanklineIndent5 guifg=#61AFEF gui=nocombine]]
 vim.cmd [[highlight IndentBlanklineIndent6 guifg=#C678DD gui=nocombine]]
 
-vim.cmd [[highlight IndentBlanklineIndent7 guibg=#1f1f1f gui=nocombine]] -- gray
-vim.cmd [[highlight IndentBlanklineIndent8 guibg=#1b1b1b gui=nocombine]] -- dark gray
+vim.cmd [[highlight IndentBlanklineIndent7 guibg=#34363D gui=nocombine]] -- dark yellow
+vim.cmd [[highlight IndentBlanklineIndent8 guibg=#2B3640 gui=nocombine]] -- teal
+-- vim.cmd [[highlight IndentBlanklineIndent9 guibg=#1b1b1b gui=nocombine]] -- dark green
 
 indent_blankline.setup {
     char = "▏",
