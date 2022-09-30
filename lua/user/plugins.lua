@@ -62,6 +62,8 @@ return packer.startup(function(use)
     -- (e.g. :35 will preview or peek line 35 without jumping and can be cancelled)
     use { "nacro90/numb.nvim" }
 
+    use { "Xuyuanp/scrollbar.nvim" }
+
     use { "simrat39/symbols-outline.nvim" }
 
     ------------------
@@ -73,6 +75,7 @@ return packer.startup(function(use)
     use { "savq/melange", commit = "78af754ad22828ea3558e2990326b8aa39730918" }
     use { "ellisonleao/gruvbox.nvim" }
     use { "bluz71/vim-moonfly-colors" }
+    use { "catppuccin/nvim", as = "catppuccin" }
 
     -- cmp plugins
     use { "hrsh7th/nvim-cmp", commit = "df6734aa018d6feb4d76ba6bda94b1aeac2b378a" } -- The completion plugin
@@ -120,10 +123,8 @@ return packer.startup(function(use)
 
     -- Tetris
     use { "alec-gibson/nvim-tetris" }
-
     -- Minesweeper
     use { "seandewar/nvimesweeper" }
-
     -- Killersheep
     use { "seandewar/killersheep.nvim" }
 
@@ -137,23 +138,42 @@ return packer.startup(function(use)
         requires = { { "nvim-lua/plenary.nvim" } },
     }
 
-    -- nvim-notify
+    -- Notifications Manager
     use { "rcarriga/nvim-notify" }
-
-    -- hlslens
     use { "kevinhwang91/nvim-hlslens", commit = "b00336ebecc7115740577afa267ff8c26c6b31dc" }
-
-    -- highlight-current-n.nvim
+    -- Enhanced highlighting during search
     use { "rktjmp/highlight-current-n.nvim" }
-
-    -- range-highlight.nvim"
+    -- Highlighting utility
     use { "winston0410/range-highlight.nvim" }
+    -- Highlights parts of line over current textwidth
+    use { "lcheylus/overlength.nvim" }
 
     -- <leader>s open spotify tui (spotify-tui)
     -- <leader>k open kubernetes tui (k9s)
 
+    use {
+        "folke/trouble.nvim",
+        requires = "kyazdani42/nvim-web-devicons",
+        config = function()
+            require("trouble").setup {
+                -- your configuration comes here
+                -- or leave it empty to use the default settings
+                -- refer to the configuration section below
+            }
+        end,
+    }
     -- zen mode
     -- TODO
+
+    -- Bazel dependency
+    use {
+        "google/vim-maktaba",
+    }
+
+    -- Bazel
+    use {
+        "bazelbuild/vim-bazel",
+    }
 
     -- mkdir.nvim
     use {

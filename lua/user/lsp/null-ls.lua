@@ -24,7 +24,7 @@ null_ls.setup {
         },
         formatting.stylelint,
         formatting.rustywind,
-        formatting.prismaFMT,
+        -- formatting.prismaFMT,
         formatting.deno_fmt,
 
         -- Mobile / Cross-platform
@@ -67,7 +67,7 @@ null_ls.setup {
         -- java -> google_java_format
 
         formatting.markdownlint,
-        formatting.nginx_beautifier,
+        -- formatting.nginx_beautifier,
         formatting.protolint,
         formatting.google_java_format,
 
