@@ -58,9 +58,14 @@ return packer.startup(function(use)
     use { "lukas-reineke/indent-blankline.nvim", commit = "6177a59552e35dfb69e1493fd68194e673dc3ee2" }
     use { "goolord/alpha-nvim", commit = "ef27a59e5b4d7b1c2fe1950da3fe5b1c5f3b4c94" }
     use { "nvim-lua/popup.nvim" }
+    -- Highlights trailing whitespace
+    use { "ntpeters/vim-better-whitespace" }
 
     -- Autoclose tags for Svelte, JS/JSX/TS/TSX, Vue, etc.
     use { "windwp/nvim-ts-autotag" }
+
+    -- Google Keep usage in Neovim
+    use { "stevearc/gkeep.nvim", run = ":UpdateRemotePlugins" }
 
     -- peeks lines of the buffer in non-obtrusive way.
     -- (e.g. :35 will preview or peek line 35 without jumping and can be cancelled)
@@ -68,10 +73,21 @@ return packer.startup(function(use)
 
     use { "Xuyuanp/scrollbar.nvim" }
 
+    use { "kevinhwang91/promise-async" }
+    -- code folding (e.g. hiding function details or boilerplate code from
+    -- current editor context)
+    use { "kevinhwang91/nvim-ufo" }
+
     -- pasting of images into neovim
     use { "ekickx/clipboard-image.nvim" }
 
     use { "simrat39/symbols-outline.nvim" }
+
+    -- vim.ui improvements
+    use { "stevearc/dressing.nvim" }
+
+    -- emoji/icon picker
+    use { "ziontee113/icon-picker.nvim" }
 
     ------------------
     -- Colorschemes --
@@ -93,6 +109,9 @@ return packer.startup(function(use)
     use { "ray-x/aurora" }
     use { "marko-cerovac/material.nvim" }
     use { "ray-x/starry.nvim" }
+    use { "rktjmp/lush.nvim" }
+    use { "RishabhRD/gruvy" }
+    use { "rockyzhang24/arctic.nvim" }
 
     -- cmp plugins
     use { "hrsh7th/nvim-cmp", commit = "df6734aa018d6feb4d76ba6bda94b1aeac2b378a" } -- The completion plugin
@@ -128,6 +147,9 @@ return packer.startup(function(use)
     use { "L3MON4D3/LuaSnip", commit = "79b2019c68a2ff5ae4d732d50746c901dd45603a" }
     -- a bunch of snippets to use
     use { "rafamadriz/friendly-snippets", commit = "d27a83a363e61009278b6598703a763ce9c8e617" }
+
+    -- Compiler Explorer
+    use { "krady21/compiler-explorer.nvim" }
 
     -- LSP
     -- enable LSP
@@ -191,14 +213,9 @@ return packer.startup(function(use)
     }
 
     -- Bazel dependency
-    use {
-        "google/vim-maktaba",
-    }
-
+    use { "google/vim-maktaba" }
     -- Bazel
-    use {
-        "bazelbuild/vim-bazel",
-    }
+    use { "bazelbuild/vim-bazel" }
 
     -- mkdir.nvim
     use { "jghauser/mkdir.nvim" }
