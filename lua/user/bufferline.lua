@@ -51,19 +51,19 @@ bufferline.setup {
         },
     },
     highlights = {
-        -- fill = {
-        --     guifg = { attribute = "fg", highlight = "#ff0000" },
-        --     guibg = { attribute = "bg", highlight = "TabLine" },
-        -- },
+        fill = {
+            guifg = { attribute = "fg", highlight = "#ff0000" },
+            guibg = { attribute = "bg", highlight = "TabLine" },
+        },
         background = {
             guifg = { attribute = "fg", highlight = "TabLine" },
             guibg = { attribute = "bg", highlight = "TabLine" },
         },
         --
-        -- buffer_visible = {
-        --     guifg = { attribute = "fg", highlight = "TabLine" },
-        --     guibg = { attribute = "bg", highlight = "TabLine" },
-        -- },
+        buffer_visible = {
+            guifg = { attribute = "fg", highlight = "TabLine" },
+            guibg = { attribute = "bg", highlight = "TabLine" },
+        },
         --
         -- close_button = {
         --     guifg = { attribute = "fg", highlight = "TabLine" },

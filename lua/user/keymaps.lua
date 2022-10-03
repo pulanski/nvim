@@ -72,6 +72,9 @@ keymap("n", "<leader>r", ":Telescope oldfiles<CR>", opts)
 -- Toggleterm
 keymap("n", "<leader>t", ":ToggleTerm<CR>", opts)
 
+-- Icon Picker
+keymap("n", "<Leader><Leader>i", "<cmd>IconPickerNormal<cr>", opts)
+
 -- Nvim Hlslens
 
 -- Git
