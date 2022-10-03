@@ -228,7 +228,7 @@ return packer.startup(function(use)
     use { "nvim-treesitter/nvim-treesitter-context", commit = "3148205c72a535af0493fec7c90a12344ac2f90d" }
 
     -- Git
-    use { "lewis6991/gitsigns.nvim", commit = "c18e016864c92ecf9775abea1baaa161c28082c3" }
+    use { "lewis6991/gitsigns.nvim" }
     use { "f-person/git-blame.nvim" } -- git blame
 
     -- GitHub
