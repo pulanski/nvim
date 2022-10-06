@@ -71,6 +71,13 @@ return packer.startup(function(use)
     -- (e.g. :35 will preview or peek line 35 without jumping and can be cancelled)
     use { "nacro90/numb.nvim" }
 
+    -- lightbulb for nvim's builtin lsp
+    use { "antoinemadec/FixCursorHold.nvim" }
+    use {
+        'kosayoda/nvim-lightbulb',
+        requires = 'antoinemadec/FixCursorHold.nvim',
+    }
+
     use { "Xuyuanp/scrollbar.nvim" }
 
     use { "kevinhwang91/promise-async" }
@@ -82,6 +89,9 @@ return packer.startup(function(use)
     use { "ekickx/clipboard-image.nvim" }
 
     use { "simrat39/symbols-outline.nvim" }
+
+    -- allows for the toggling of transparent backgrounds
+    use { "xiyaowong/nvim-transparent" }
 
     -- vim.ui improvements
     use { "stevearc/dressing.nvim" }
