@@ -158,17 +158,21 @@ return packer.startup(function(use)
     -- a bunch of snippets to use
     use { "rafamadriz/friendly-snippets", commit = "d27a83a363e61009278b6598703a763ce9c8e617" }
 
-    -- Compiler Explorer
-    use { "krady21/compiler-explorer.nvim" }
 
     -- LSP
-    -- enable LSP
-    use { "neovim/nvim-lspconfig", commit = "148c99bd09b44cf3605151a06869f6b4d4c24455" }
-    -- simple to use language server installer
-    use { "williamboman/nvim-lsp-installer", commit = "e9f13d7acaa60aff91c58b923002228668c8c9e6" }
+    use { "neovim/nvim-lspconfig", commit = "148c99bd09b44cf3605151a06869f6b4d4c24455" } -- enable LSP
+    -- Package Manager for Neovim (LSP servers, DAP servers, linters, and formatters)
+    use "williamboman/mason.nvim"
+    -- use { "williamboman/nvim-lsp-installer", commit = "e9f13d7acaa60aff91c58b923002228668c8c9e6" }
     -- for formatters and linters
     use { "jose-elias-alvarez/null-ls.nvim", commit = "ff40739e5be6581899b43385997e39eecdbf9465" }
     use { "RRethy/vim-illuminate", commit = "c82e6d04f27a41d7fdcad9be0bce5bb59fcb78e5" }
+    use "ray-x/lsp_signature.nvim"
+    use "williamboman/mason-lspconfig.nvim"
+
+
+    -- Compiler Explorer
+    use { "krady21/compiler-explorer.nvim" }
 
     ---------------------------
     -- Programming Languages --
