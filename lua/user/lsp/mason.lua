@@ -61,7 +61,6 @@ local servers = {
     terraformls, -- terraform
     tflint,
     tsserver, -- typescript
-    vimls, -- vim
     yamlls, -- yaml
     zls, -- zig
 }
@@ -70,3 +69,19 @@ mason_lspconfig.setup {
     ensure_installed = servers,
     automatic_installation = true,
 }
+
+local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
+if not lspconfig_status_ok then
+  return
+end
+
+local opts = {}
+
+for _, server in pairs(servers) do
+  opts = {
+    on_attach = require("user.lsp.handlers").on_attach,
+    capabilities = require("user.lsp.handlers").capabilities,
+  }
+  server = vim.split(server, "@")[1]
+  lspconfig[server].setup(opts)
+end
