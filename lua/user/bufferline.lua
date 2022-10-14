@@ -21,48 +21,54 @@ bufferline.setup {
         right_trunc_marker = "",
         offsets = { { filetype = "NvimTree", text = "", padding = 1 } },
         diagnostics = "nvim_lsp",
-    },
-
-    groups = {
-        options = {
-            toggle_hidden_on_enter = true, -- when you re-enter a hidden group this options re-opens that group so the buffer is visible
-        },
-        items = {
-            {
-                name = "Tests", -- Mandatory
-                highlight = { gui = "underline", guisp = "blue" }, -- Optional
-                priority = 2, -- determines where it will appear relative to other groups (Optional)
-                icon = "", -- Optional
-                matcher = function(buf) -- Mandatory
-                    return buf.filename:match "%_test" or buf.filename:match "%_spec"
-                end,
+        groups = {
+            options = {
+                toggle_hidden_on_enter = true, -- when you re-enter a hidden group this options re-opens that group so the buffer is visible
             },
-            {
-                name = "Docs",
-                highlight = { gui = "undercurl", guisp = "green" },
-                auto_close = false, -- whether or not close this group if it doesn't contain the current buffer
-                matcher = function(buf)
-                    return buf.filename:match "%.md" or buf.filename:match "%.txt"
-                end,
-                separator = { -- Optional
-                    style = require("bufferline.groups").separator.tab,
+            items = {
+                {
+                    name = "Tests", -- Mandatory
+                    highlight = { underline = true, sp = "blue" }, -- Optional
+                    priority = 2, -- determines where it will appear relative to other groups (Optional)
+                    icon = "", -- Optional
+                    matcher = function(buf) -- Mandatory
+                        return buf.filename:match "%_test" or buf.filename:match "%_spec"
+                    end,
+                },
+                {
+                    name = "Docs",
+                    highlight = { undercurl = true, sp = "green" },
+                    auto_close = false, -- whether or not close this group if it doesn't contain the current buffer
+                    matcher = function(buf)
+                        return buf.filename:match "%.md" or buf.filename:match "%.txt"
+                    end,
+                    separator = { -- Optional
+                        style = require("bufferline.groups").separator.tab,
+                    },
                 },
             },
         },
+        diagnostics_indicator = function(count, level, diagnostics_dict, context)
+            local s = " "
+            for e, n in pairs(diagnostics_dict) do
+                local sym = e == "error" and " " or (e == "warning" and " " or "")
+                s = s .. n .. sym
+            end
+            return s
+        end,
     },
     highlights = {
         fill = {
-            guifg = { attribute = "fg", highlight = "#ff0000" },
-            guibg = { attribute = "bg", highlight = "TabLine" },
+            -- fg = "o",
+            bg = "#212125",
         },
         background = {
-            guifg = { attribute = "fg", highlight = "TabLine" },
-            guibg = { attribute = "bg", highlight = "TabLine" },
+            -- fg = "TabLine",
+            -- bg = "TabLine",
         },
-        --
         buffer_visible = {
-            guifg = { attribute = "fg", highlight = "TabLine" },
-            guibg = { attribute = "bg", highlight = "TabLine" },
+            -- fg = "TabLine",
+            -- bg = "TabLine",
         },
         --
         -- close_button = {
@@ -75,8 +81,8 @@ bufferline.setup {
         -- },
         --
         tab_selected = {
-            guifg = { attribute = "fg", highlight = "Normal" },
-            guibg = { attribute = "bg", highlight = "Normal" },
+            -- fg = "Normal",
+            -- bg = "Normal",
         },
         -- tab = {
         --     guifg = { attribute = "fg", highlight = "TabLine" },
@@ -129,12 +135,4 @@ bufferline.setup {
         -- --     guibg = { attribute = "bg", highlight = "Normal" },
         -- -- },
     },
-    diagnostics_indicator = function(count, level, diagnostics_dict, context)
-        local s = " "
-        for e, n in pairs(diagnostics_dict) do
-            local sym = e == "error" and " " or (e == "warning" and " " or "")
-            s = s .. n .. sym
-        end
-        return s
-    end,
 }

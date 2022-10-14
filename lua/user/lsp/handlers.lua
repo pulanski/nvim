@@ -81,11 +81,34 @@ M.on_attach = function(client, bufnr)
     end
 
     lsp_keymaps(bufnr)
-    local status_ok, illuminate = pcall(require, "illuminate")
-    if not status_ok then
-        return
-    end
-    illuminate.on_attach(client)
+    --local status_ok, illuminate = pcall(require, "illuminate")
+    --if not status_ok then
+    --    return
+    --end
+    --illuminate.on_attach(client)
+end
+
+function M.enable_format_on_save()
+  vim.cmd [[
+    augroup format_on_save
+      autocmd!
+      autocmd BufWritePre * lua vim.lsp.buf.format({ async = false })
+    augroup end
+  ]]
+  vim.notify "Enabled format on save"
+end
+
+function M.disable_format_on_save()
+  M.remove_augroup "format_on_save"
+  vim.notify "Disabled format on save"
+end
+
+function M.toggle_format_on_save()
+  if vim.fn.exists "#format_on_save#BufWritePre" == 0 then
+    M.enable_format_on_save()
+  else
+    M.disable_format_on_save()
+  end
 end
 
 return M
