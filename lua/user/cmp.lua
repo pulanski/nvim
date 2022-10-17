@@ -12,14 +12,16 @@ local compare = require "cmp.config.compare"
 
 require("luasnip/loaders/from_vscode").lazy_load()
 
-local check_backspace = function()
-    local col = vim.fn.col "." - 1
-    return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
-end
+-- local check_backspace = function()
+--     local col = vim.fn.col "." - 1
+--     return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
+-- end
 
 local icons = require "user.icons"
 
 vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
+vim.api.nvim_set_hl(0, "CmpItemKindEmoji", { fg = "#FDE030" })
+vim.api.nvim_set_hl(0, "CmpItemKindCrate", { fg = "#F64D00" })
 
 local kind_icons = {
     Text = "",
@@ -49,7 +51,17 @@ local kind_icons = {
     TypeParameter = "",
 }
 
+vim.g.cmp_active = true
+
 cmp.setup {
+    enabled = function()
+        local buftype = vim.api.nvim_buf_get_option(0, "buftype")
+        if buftype == "prompt" then
+            return false
+        end
+        return vim.g.cmp_active
+    end,
+    preselect = cmp.PreselectMode.None,
     snippet = {
         expand = function(args)
             luasnip.lsp_expand(args.body) -- For `luasnip` users.

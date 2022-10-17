@@ -7,6 +7,9 @@ end
 local formatting = null_ls.builtins.formatting
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
 local diagnostics = null_ls.builtins.diagnostics
+-- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/code_actions
+local code_actions = null_ls.builtins.code_actions
+local hover = null_ls.builtins.hover
 
 null_ls.setup {
     debug = false,
@@ -49,6 +52,8 @@ null_ls.setup {
         formatting.rustfmt,
         formatting.gofumpt,
 
+        formatting.buf, -- formatting for .proto files
+
         -- Scripting / General purpose
         --
         -- python -> black
@@ -56,6 +61,8 @@ null_ls.setup {
         -- lua -> stylua
 
         formatting.black.with { extra_args = { "--fast" } },
+        formatting.isort, -- Python utility / library to sort imports
+        -- alphabetically and automatically separate them into sections and by type.
         formatting.mix,
         formatting.stylua,
 
@@ -67,12 +74,42 @@ null_ls.setup {
         -- java -> google_java_format
 
         formatting.markdownlint,
-        -- formatting.nginx_beautifier,
+        formatting.nginx_beautifier,
         formatting.protolint,
         formatting.google_java_format,
+        formatting.fish_indent, -- indentation and prettifying for fish scripts
+
+        formatting.latexindent, -- A perl script for formatting LaTeX files
+        -- that is generally included in major TeX distributions.
+        formatting.ocdc, -- formatting for changelog files
+
+        formatting.pg_format, -- formatting for SQL syntax beautifier
+        formatting.trim_whitespace, -- simple wrapper around awk for removing
+        -- trailing whitespace
+
+        ------------------
+        -- Code Actions --
+        ------------------
+
+        code_actions.cspell,
+        code_actions.eslint_d, -- Injects actions to fix ESLint issues or
+        -- ignore broken rules. Like ESLint, but faster.
+        code_actions.refactoring, -- The Refactoring library based off the
+        -- Refactoring book by Martin Fowler.
+        code_actions.shellcheck, -- Provides actions to disable ShellCheck
+        -- errors/warnings, either for the current line or for the entire file.
+
+        -----------
+        -- Hover --
+        -----------
+
+        hover.dictionary, -- Shows the first available definition for the
+        -- current word under the cursor.
+        hover.printenv, -- Shows the value for the current environment
+        -- variable under the cursor.
 
         -------------------------------------------------------------
-        -- Diangostics for various languages/libs/tools/frameworks --
+        -- Diagnostics for various languages/libs/tools/frameworks --
         -------------------------------------------------------------
 
         -- python -> flake8                                        --
@@ -97,22 +134,36 @@ null_ls.setup {
         --
         --
         diagnostics.flake8, -- python
+        diagnostics.mypy, -- optional static type checker for Python that aims
+        -- to combine the benefits of dynamic (or "duck") typing and static typing.
         diagnostics.semgrep, -- c#, go, java, js, jsx, json, php, python, ruby, scala, ts, tsx
+        diagnostics.luacheck, -- lua
+        diagnostics.scalafmt, -- scala
 
         -- Systems-level
         -- revive -> go
         diagnostics.revive, -- go
         diagnostics.cppcheck, -- c/c++
+        diagnostics.checkmake, -- make linter.
+
         diagnostics.shellcheck, -- sh
         -- TODO (currently broken) diagnostics.selene, -- lua
         diagnostics.zsh, -- zsh
         diagnostics.fish, -- fish
-        -- TODO (currently broken) diagnostics.buff, -- protobuf
-        -- TODO (currently broken) diagnostics.cspell, -- spell check
+        diagnostics.buf, -- protobuf
+        -- TODO (currently broken)
+        diagnostics.cspell, -- spell check
         diagnostics.ansiblelint, -- ansible
         diagnostics.actionlint, -- github actions
         diagnostics.buildifier, -- buildifier (Bazel)
         diagnostics.credo, -- elixir
-        -- TODO (currently broken) diagnostics.editorconfig_checker, -- editorconfig
+
+        -- Mathematics
+        diagnostics.chktex, -- LaTeX
+        diagnostics.mlint, -- linting for MATLAB files
+
+        -- TODO (currently broken)
+        diagnostics.editorconfig_checker, -- verify that your files are in
+        -- harmony with your .editorconfig.
     },
 }
