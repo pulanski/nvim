@@ -1,23 +1,29 @@
 local cmp_status_ok, cmp = pcall(require, "cmp")
 if not cmp_status_ok then
+    vim.notify("Failed to load cmp in neovim config | cmp.lua", "error")
     return
 end
 
 local snip_status_ok, luasnip = pcall(require, "luasnip")
 if not snip_status_ok then
+    vim.notify("Failed to load luasnip in neovim config | cmp.lua", "error")
     return
 end
 
-local compare = require "cmp.config.compare"
+local compare_status_ok, compare = pcall(require, "cmp.config.compare")
+if not compare_status_ok then
+    vim.notify("Failed to load cmp.config.compare in neovim config | cmp.lua", "error")
+    return
+end
 
 require("luasnip/loaders/from_vscode").lazy_load()
 
--- local check_backspace = function()
---     local col = vim.fn.col "." - 1
---     return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
--- end
+local check_backspace = function()
+    local col = vim.fn.col "." - 1
+    return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
+end
 
-local icons = require "user.icons"
+-- local icons = require "user.icons"
 
 vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
 vim.api.nvim_set_hl(0, "CmpItemKindEmoji", { fg = "#FDE030" })
