@@ -81,7 +81,7 @@ null_ls.setup {
 
         formatting.latexindent, -- A perl script for formatting LaTeX files
         -- that is generally included in major TeX distributions.
-        formatting.ocdc, -- formatting for changelog files
+        -- formatting.ocdc, -- formatting for changelog files
 
         formatting.pg_format, -- formatting for SQL syntax beautifier
         formatting.trim_whitespace, -- simple wrapper around awk for removing
@@ -138,7 +138,7 @@ null_ls.setup {
         -- to combine the benefits of dynamic (or "duck") typing and static typing.
         diagnostics.semgrep, -- c#, go, java, js, jsx, json, php, python, ruby, scala, ts, tsx
         diagnostics.luacheck, -- lua
-        diagnostics.scalafmt, -- scala
+        -- diagnostics.scalafmt, -- scala
 
         -- Systems-level
         -- revive -> go
@@ -147,12 +147,11 @@ null_ls.setup {
         diagnostics.checkmake, -- make linter.
 
         diagnostics.shellcheck, -- sh
-        -- TODO (currently broken) diagnostics.selene, -- lua
+        -- diagnostics.selene, -- lua
         diagnostics.zsh, -- zsh
         diagnostics.fish, -- fish
         diagnostics.buf, -- protobuf
-        -- TODO (currently broken)
-        diagnostics.cspell, -- spell check
+        -- diagnostics.cspell, -- spell check
         diagnostics.ansiblelint, -- ansible
         diagnostics.actionlint, -- github actions
         diagnostics.buildifier, -- buildifier (Bazel)
@@ -162,8 +161,8 @@ null_ls.setup {
         diagnostics.chktex, -- LaTeX
         diagnostics.mlint, -- linting for MATLAB files
 
-        -- TODO (currently broken)
-        diagnostics.editorconfig_checker, -- verify that your files are in
+        -- TODO currently broken
+        -- diagnostics.editorconfig_checker, -- verify that your files are in
         -- harmony with your .editorconfig.
     },
 }

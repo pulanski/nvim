@@ -103,15 +103,6 @@ return packer.startup(function(use)
         "kosayoda/nvim-lightbulb",
         requires = "antoinemadec/FixCursorHold.nvim",
     }
-    -- vim/nvim usage cheatsheet (useful for new users)
-    use {
-        "sudormrfbin/cheatsheet.nvim",
-        requires = {
-            { "nvim-telescope/telescope.nvim" },
-            { "nvim-lua/popup.nvim" },
-            { "nvim-lua/plenary.nvim" },
-        },
-    }
     -- display due dates for dates in simple format
     -- for dates seen within the current buffer
     use "NFrid/due.nvim"
@@ -128,6 +119,8 @@ return packer.startup(function(use)
     use "numToStr/Comment.nvim"
     -- comments for todos, fixmes, etc. written in source code
     use { "folke/todo-comments.nvim", requires = "nvim-lua/plenary.nvim" }
+    -- editorconfig usage within neovim
+    use "gpanders/editorconfig.nvim"
 
     -- TODO update config
     use {
@@ -235,6 +228,15 @@ return packer.startup(function(use)
     use "ggandor/leap.nvim"
     -- toggle between absolute and relative number mode
     use "sitiom/nvim-numbertoggle"
+    -- vim/nvim usage cheatsheet (useful for new users)
+    use {
+        "sudormrfbin/cheatsheet.nvim",
+        requires = {
+            { "nvim-telescope/telescope.nvim" },
+            { "nvim-lua/popup.nvim" },
+            { "nvim-lua/plenary.nvim" },
+        },
+    }
 
     ------------------
     -- Colorschemes --
