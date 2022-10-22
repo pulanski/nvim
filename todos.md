@@ -1,11 +1,12 @@
 # TODOs
 
-- [ ] Fix cmp
-- [ ] Fix lsp
+- [x] Fix lsp issues with mason
 - [x] Add nvim-transparent <https://github.com/xiyaowong/nvim-transparent>
-- [ ] Fix cmp issues with check backspace
-- [ ] fix telescope/cmp issues with <Tab>
-- [ ] cmp_nvim_lsp.update_capabilities is deprecated, use
-      cmp_nvim_lsp.default_ca pabilities instead. See :h deprecated
+- [x] Fix cmp issues with check backspace
+- [x] fix telescope/cmp issues with <Tab>
+- [x] cmp_nvim_lsp.update_capabilities is deprecated, use
+      cmp_nvim_lsp.default_capabilities instead. See :h deprecated
+- [ ] Add folding configuration
+- [ ] add more icon configs
 
 - TODO
