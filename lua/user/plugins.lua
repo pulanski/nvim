@@ -57,7 +57,6 @@ return packer.startup(function(use)
     use("nvim-lua/popup.nvim")
 
     use("JoosepAlviste/nvim-ts-context-commentstring")
-    use("kyazdani42/nvim-web-devicons")
     use("kyazdani42/nvim-tree.lua")
     use("akinsho/bufferline.nvim")
     use("moll/vim-bbye")
@@ -65,6 +64,20 @@ return packer.startup(function(use)
     use("ahmedkhalf/project.nvim")
     use("lewis6991/impatient.nvim")
     use("lukas-reineke/indent-blankline.nvim")
+
+    -----------
+    -- Icons --
+    -----------
+
+    -- collection of popular webdev icons
+    use("kyazdani42/nvim-web-devicons")
+    -- collection of configurations for nvim-web-devicons
+    -- use({
+    --     "yamatsum/nvim-nonicons",
+    --     requires = { "kyazdani42/nvim-web-devicons" },
+    -- })
+    -- emoji/icon picker
+    use("ziontee113/icon-picker.nvim")
 
     ------------------
     -- IDE Features --
@@ -81,6 +94,7 @@ return packer.startup(function(use)
         "nvim-telescope/telescope.nvim",
         requires = { { "nvim-lua/plenary.nvim" } },
     })
+    use("gorbit99/codewindow.nvim")
 
     ------------------------
     -- Editor Enhancement --
@@ -107,7 +121,8 @@ return packer.startup(function(use)
     -- for dates seen within the current buffer
     use("NFrid/due.nvim")
     -- scrollbar for better understanding current location in file
-    use("Xuyuanp/scrollbar.nvim")
+    -- use("Xuyuanp/scrollbar.nvim")
+    use("petertriho/nvim-scrollbar")
     -- smooth scrolling within neovim
     use("karb94/neoscroll.nvim")
     -- enhanced highlighting during search
@@ -123,6 +138,10 @@ return packer.startup(function(use)
     use({ "folke/todo-comments.nvim", requires = "nvim-lua/plenary.nvim" })
     -- editorconfig usage within neovim
     use("gpanders/editorconfig.nvim")
+    -- enhanced highlighting for searches within the editor
+    use("kevinhwang91/nvim-hlslens")
+    -- virtual text of current context after functions, methods, tables, etc.
+    -- use("haringsrob/nvim_context_vt")
 
     -- TODO update config
     use({
@@ -197,8 +216,6 @@ return packer.startup(function(use)
     use("xiyaowong/nvim-transparent")
     -- vim.ui improvements
     use("stevearc/dressing.nvim")
-    -- emoji/icon picker
-    use("ziontee113/icon-picker.nvim")
 
     -------------------------
     -- Syntax / Treesitter --
@@ -242,6 +259,19 @@ return packer.startup(function(use)
         },
     })
     -- buffer switcher ui
+    use("matbme/JABS.nvim")
+    -- create annotations for code segments
+    use({
+        "danymat/neogen",
+        requires = {
+            { "nvim-treesitter/nvim-treesitter" },
+        },
+    })
+    -- internet browsing from within neovim
+    use({
+        "lalitmee/browse.nvim",
+        requires = { "nvim-telescope/telescope.nvim" },
+    })
 
     ------------------
     -- Colorschemes --
@@ -266,6 +296,7 @@ return packer.startup(function(use)
     use("rktjmp/lush.nvim")
     use("RishabhRD/gruvy")
     use("rockyzhang24/arctic.nvim")
+    use("arcticicestudio/nord-vim")
 
     -- markdown / LaTeX
     use("davidgranstrom/nvim-markdown-preview")
@@ -374,8 +405,6 @@ return packer.startup(function(use)
     use("seandewar/nvimesweeper")
     -- killersheep
     use("seandewar/killersheep.nvim")
-
-    use("kevinhwang91/nvim-hlslens")
 
     -- automatically set up your configuration after cloning packer.nvim
     -- put this at the end after all plugins
