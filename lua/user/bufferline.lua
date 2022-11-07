@@ -3,13 +3,17 @@ if not status_ok then
     return
 end
 
-bufferline.setup {
+bufferline.setup({
     options = {
         themeable = true, -- whether or not the highlights for this plugin can be overriden.
 
         -- For ⁸·₂
         numbers = function(opts)
-            return string.format("%s·%s", opts.raise(opts.id), opts.lower(opts.ordinal))
+            return string.format(
+                "%s·%s",
+                opts.raise(opts.id),
+                opts.lower(opts.ordinal)
+            )
         end,
         close_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
         separator_style = "slant", -- | "thick" | "thin" | { 'any', 'any' },
@@ -20,7 +24,7 @@ bufferline.setup {
         left_trunc_marker = "",
         right_trunc_marker = "",
         offsets = { { filetype = "NvimTree", text = "", padding = 1 } },
-        diagnostics = "nvim_lsp",
+        diagnostics = "nvim_lsp", -- false, "nvim_lsp", "coc"
         groups = {
             options = {
                 toggle_hidden_on_enter = true, -- when you re-enter a hidden group this options re-opens that group so the buffer is visible
@@ -32,7 +36,8 @@ bufferline.setup {
                     priority = 2, -- determines where it will appear relative to other groups (Optional)
                     icon = "", -- Optional
                     matcher = function(buf) -- Mandatory
-                        return buf.filename:match "%_test" or buf.filename:match "%_spec"
+                        return buf.filename:match("%_test")
+                            or buf.filename:match("%_spec")
                     end,
                 },
                 {
@@ -40,7 +45,8 @@ bufferline.setup {
                     highlight = { undercurl = true, sp = "green" },
                     auto_close = false, -- whether or not close this group if it doesn't contain the current buffer
                     matcher = function(buf)
-                        return buf.filename:match "%.md" or buf.filename:match "%.txt"
+                        return buf.filename:match("%.md")
+                            or buf.filename:match("%.txt")
                     end,
                     separator = { -- Optional
                         style = require("bufferline.groups").separator.tab,
@@ -51,7 +57,8 @@ bufferline.setup {
         diagnostics_indicator = function(count, level, diagnostics_dict, context)
             local s = " "
             for e, n in pairs(diagnostics_dict) do
-                local sym = e == "error" and " " or (e == "warning" and " " or "")
+                local sym = e == "error" and " "
+                    or (e == "warning" and " " or "")
                 s = s .. n .. sym
             end
             return s
@@ -135,4 +142,4 @@ bufferline.setup {
         -- --     guibg = { attribute = "bg", highlight = "Normal" },
         -- -- },
     },
-}
+})
