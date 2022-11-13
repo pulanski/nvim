@@ -26,7 +26,7 @@ local theme = {
     normal = {
         a = { fg = colors.white, bg = colors.blue },
         b = { fg = colors.white, bg = colors.light_blue },
-        c = { fg = colors.black, bg = colors.dark_grey },
+        c = { fg = colors.white, bg = colors.dark_grey },
         z = { fg = colors.white, bg = colors.blue },
     },
     insert = { a = { fg = colors.black, bg = colors.light_green } },
@@ -69,7 +69,7 @@ local spaces = function()
     return "spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
 end
 
-lualine.setup {
+lualine.setup({
     options = {
         globalstatus = true,
         icons_enabled = true,
@@ -87,4 +87,4 @@ lualine.setup {
         lualine_y = { location },
         lualine_z = { "progress" },
     },
-}
+})
