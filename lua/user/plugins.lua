@@ -370,6 +370,9 @@ return packer.startup(function(use)
     -- TODO <leader>s open spotify tui (spotify-tui)
     -- TODO <leader>k open kubernetes tui (k9s)
 
+    -- Testing
+    use("klen/nvim-test")
+
     -- DAP
     use("mfussenegger/nvim-dap")
     use("rcarriga/nvim-dap-ui")

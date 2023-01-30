@@ -3,7 +3,8 @@ if not status_ok_mason then
     return
 end
 
-local status_ok_mason_lspconfig, mason_lspconfig = pcall(require, "mason-lspconfig")
+local status_ok_mason_lspconfig, mason_lspconfig =
+    pcall(require, "mason-lspconfig")
 if not status_ok_mason_lspconfig then
     return
 end
@@ -29,7 +30,7 @@ local servers = {
     "awk_ls", -- awk
     "angularls", -- angular
     "ansiblels", -- ansible
-    "asm_lsp", -- assembly
+    -- "asm_lsp", -- assembly
     "astro", -- astro
     "bashls", -- bash
     "clangd", -- c, c++
@@ -66,10 +67,10 @@ local servers = {
     "zls", -- zig
 }
 
-mason_lspconfig.setup {
+mason_lspconfig.setup({
     ensure_installed = servers,
     automatic_installation = true,
-}
+})
 
 local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
 if not lspconfig_status_ok then
@@ -85,8 +86,13 @@ for _, server in pairs(servers) do
     }
     server = vim.split(server, "@")[1]
     if server == "sumneko_lua" then
-        local sumneko_lua_opts = require "user.lsp.settings.sumneko_lua"
+        local sumneko_lua_opts = require("user.lsp.settings.sumneko_lua")
         opts = vim.tbl_deep_extend("force", sumneko_lua_opts, opts)
+    end
+
+    if server == "clangd" then
+        local clangd_opts = require("user.lsp.settings.clangd")
+        opts = vim.tbl_deep_extend("force", clangd_opts, opts)
     end
 
     lspconfig[server].setup(opts)
