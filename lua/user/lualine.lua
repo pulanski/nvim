@@ -18,16 +18,16 @@ local colors = {
     orange = "#fe8019",
     green = "#28592C",
     magenta = "#9558B2",
-    light_blue = "#9bafd9",
+    light_blue = "#6271A4",
     yellow = "#ffba00",
 }
 
 local theme = {
     normal = {
-        a = { fg = colors.white, bg = colors.blue },
-        b = { fg = colors.white, bg = colors.light_blue },
+        a = { fg = colors.white, bg = colors.light_blue },
+        b = { fg = colors.white, bg = colors.dark_grey },
         c = { fg = colors.white, bg = colors.dark_grey },
-        z = { fg = colors.white, bg = colors.blue },
+        z = { fg = colors.white, bg = colors.light_blue },
     },
     insert = { a = { fg = colors.black, bg = colors.light_green } },
     visual = { a = { fg = colors.black, bg = colors.magenta } },
@@ -75,7 +75,7 @@ lualine.setup({
         icons_enabled = true,
         theme = theme,
         component_separators = { left = "", right = "" },
-        section_separators = { left = "", right = "" },
+        section_separators = { left = "", right = "" },
         disabled_filetypes = { "alpha", "dashboard" },
         always_divide_middle = true,
     },

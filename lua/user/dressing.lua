@@ -31,10 +31,12 @@ dressing.setup({
         max_width = { 140, 0.9 },
         min_width = { 20, 0.2 },
 
-        -- Window transparency (0-100)
-        winblend = 10,
-        -- Change default highlight groups (see :help winhl)
-        winhighlight = "",
+        win_options = {
+            -- Window transparency (0-100)
+            winblend = 10,
+            -- Change default highlight groups (see :help winhl)
+            winhighlight = "",
+        },
 
         override = function(conf)
             -- This is the config that will be passed to nvim_open_win.

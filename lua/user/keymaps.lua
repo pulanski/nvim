@@ -7,8 +7,6 @@ local keymap = vim.api.nvim_set_keymap
 
 --Remap space as leader key
 keymap("n", "<Space>", "", opts)
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
 
 -- Modes
 --   normal_mode = "n",
@@ -37,7 +35,6 @@ keymap("n", "<C-p>", ":vertical resize +2<CR>", opts)
 keymap("n", "<S-l>", ":CybuPrev<CR>", opts)
 keymap("n", "<S-h>", ":CybuNext<CR>", opts)
 
-
 -- Clear highlights
 keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", opts)
 
@@ -63,7 +60,7 @@ keymap("v", ">", ">gv", opts)
 -------------
 
 -- NvimTree
--- keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
+keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 
 -- Telescope
 keymap("n", "<leader>f", ":Telescope find_files<CR>", opts)
@@ -86,7 +83,12 @@ keymap("n", "<Leader><Leader>i", "<cmd>IconPickerNormal<cr>", opts)
 -- Comment
 -- keymap("n", "<leader>/", "<cmd>lua require('Comment.api').toggle_current_linewise()<CR>", opts)
 -- Block commenting (ctrl v -> space /)
-keymap("x", "<leader>/", '<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>', opts)
+keymap(
+    "x",
+    "<leader>/",
+    '<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>',
+    opts
+)
 
 -- DAP
 keymap("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", opts)

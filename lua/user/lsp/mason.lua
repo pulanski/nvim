@@ -50,7 +50,7 @@ local servers = {
     "julials", -- julia
     "kotlin_language_server", -- kotlin
     "ltex", -- latex
-    "sumneko_lua", -- lua
+    "lua_ls", -- lua
     "marksman", -- markdown
     "prismals", -- prisma
     "pyright", -- python
