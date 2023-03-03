@@ -16,7 +16,7 @@ return {
     "ahmedkhalf/project.nvim",
     "lewis6991/impatient.nvim",
     "lukas-reineke/indent-blankline.nvim",
-    --
+
     -----------
     -- Icons --
     -----------
@@ -47,6 +47,13 @@ return {
         dependencies = { "nvim-lua/plenary.nvim" },
     },
     "gorbit99/codewindow.nvim",
+
+    ------------------------
+    -- Split and Window   --
+    ------------------------
+
+    -- configurable window splitline
+    "nvim-zh/colorful-winsep.nvim",
 
     ------------------------
     -- Editor Enhancement --
@@ -95,7 +102,6 @@ return {
     -- virtual text of current context after functions, methods, tables, etc.
     "haringsrob/nvim_context_vt",
 
-    -- -- TODO update config
     {
         "folke/trouble.nvim",
         dependencies = "kyazdani42/nvim-web-devicons",
@@ -109,17 +115,17 @@ return {
         -- }
     },
 
-    -- ---------
-    -- -- LSP --
-    -- ---------
+    ---------
+    -- LSP --
+    ---------
 
-    -- -- enable LSP
-    -- -- use("neovim/nvim-lspconfig")
+    -- enable LSP
+    -- use("neovim/nvim-lspconfig")
     "neovim/nvim-lspconfig",
-    -- -- package manager for neovim (LSP servers, DAP servers, linters, and formatters)
+    -- package manager for neovim (LSP servers, DAP servers, linters, and formatters)
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
-    -- -- for formatters and linters
+    -- for formatters and linters
     "jose-elias-alvarez/null-ls.nvim",
 
     "ray-x/lsp_signature.nvim",
@@ -129,8 +135,8 @@ return {
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
     -- tree-like view for symbols in neovim using the lsp
     "simrat39/symbols-outline.nvim",
-    -- -- alternative lsp implementation
-    -- -- use "glepnir/lspsaga.nvim" <- NOT USED
+    -- alternative lsp implementation
+    -- use "glepnir/lspsaga.nvim" <- NOT USED
 
     -----------------
     -- Completions --
@@ -282,6 +288,7 @@ return {
     "ruifm/gitlinker.nvim",
     "mattn/vim-gist",
     "mattn/webapi-vim",
+    "TimUntersberger/neogit",
 
     ------------
     -- GitHub --
@@ -356,7 +363,7 @@ return {
 
     -- -- Google Keep usage in Neovim
     -- -- { "stevearc/gkeep.nvim", run = ":UpdateRemotePlugins" },
-    { "stevearc/gkeep.nvim",      build = ":UpdateRemotePlugins" },
+    { "stevearc/gkeep.nvim", build = ":UpdateRemotePlugins" },
 
     -- -----------
     -- -- Games --
@@ -376,4 +383,3 @@ return {
     -- end
     -- end)
 }
-
