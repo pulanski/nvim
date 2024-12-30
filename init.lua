@@ -226,6 +226,16 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'cpp',
+  callback = function()
+    vim.opt_local.tabstop = 2 -- Tab character is 2 spaces wide
+    vim.opt_local.shiftwidth = 2 -- Indentation uses 2 spaces
+    vim.opt_local.expandtab = true -- Use spaces instead of tabs
+    vim.opt_local.softtabstop = 2 -- Inserts/removes 2 spaces when pressing Tab/Backspace
+  end,
+})
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -310,12 +320,71 @@ require('lazy').setup({
   },
 
   {
+    'folke/snacks.nvim',
+    priority = 1000,
+    lazy = false,
+    ---@type snacks.Config
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+      bigfile = { enabled = true },
+      dashboard = { enabled = true },
+      indent = { enabled = true },
+      input = { enabled = true },
+      notifier = { enabled = true },
+      quickfile = { enabled = true },
+      scroll = { enabled = false },
+      statuscolumn = { enabled = true },
+      words = { enabled = true },
+    },
+    keys = {
+      {
+        '<leader>z',
+        function()
+          Snacks.zen()
+        end,
+        desc = 'Toggle Zen Mode',
+      },
+      {
+        '<leader>Z',
+        function()
+          Snacks.zen.zoom()
+        end,
+        desc = 'Toggle Zoom',
+      },
+      {
+        '<leader>bd',
+        function()
+          Snacks.bufdelete()
+        end,
+        desc = 'Delete Buffer',
+      },
+      {
+        '<leader>cR',
+        function()
+          Snacks.rename.rename_file()
+        end,
+        desc = 'Rename File',
+      },
+      {
+        '<leader>gB',
+        function()
+          Snacks.gitbrowse()
+        end,
+        desc = 'Git Browse',
+        mode = { 'n', 'v' },
+      },
+    },
+  },
+
+  {
     'okuuva/auto-save.nvim',
     -- 'Pocco81/auto-save.nvim',
     config = function()
       local auto_save = require 'auto-save'
       auto_save.setup {
-        debounce_delay = 2500, -- saves the file at most every `debounce_delay` milliseconds
+        debounce_delay = 5000, -- saves the file at most every `debounce_delay` milliseconds
       }
     end,
   },
@@ -503,19 +572,19 @@ require('lazy').setup({
           max_win_width = 0.5, -- integer for absolute in columns
           -- float for relative to win/editor width
         },
-        vim.api.nvim_set_keymap('n', '<S-l>', '<Plug>(CybuPrev)', { noremap = true, silent = true }),
-        vim.api.nvim_set_keymap('n', '<S-h>', '<Plug>(CybuNext)', { noremap = true, silent = true }),
+        vim.api.nvim_set_keymap('n', '<S-h>', '<Plug>(CybuPrev)', { noremap = true, silent = true }),
+        vim.api.nvim_set_keymap('n', '<S-l>', '<Plug>(CybuNext)', { noremap = true, silent = true }),
       }
     end,
   },
 
-  {
-    'rcarriga/nvim-notify',
-    lazy = false,
-    config = function()
-      vim.notify = require 'notify'
-    end,
-  },
+  -- {
+  --   'rcarriga/nvim-notify',
+  --   lazy = false,
+  --   config = function()
+  --     vim.notify = require 'notify'
+  --   end,
+  -- },
 
   {
     'chrisgrieser/nvim-early-retirement',
@@ -847,7 +916,14 @@ require('lazy').setup({
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        clangd = {},
+        vls = {},
+        clangd = {
+          settings = {
+            init_options = {
+              fallbackFlags = { '--std=c++20' },
+            },
+          },
+        },
         zls = {
           settings = {
             zls = {
@@ -872,6 +948,8 @@ require('lazy').setup({
             },
           },
         },
+        -- ruff_lsp = {},
+        -- ruby_lsp = {},
         pyright = {},
         rust_analyzer = {
           settings = {
@@ -957,6 +1035,7 @@ require('lazy').setup({
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
       require('mason-lspconfig').setup {
+        ensure_installed = vim.tbl_keys(servers),
         handlers = {
           function(server_name)
             local server = servers[server_name] or {}
@@ -1006,12 +1085,12 @@ require('lazy').setup({
   -- {
   --   'iamcco/markdown-preview.nvim',
   --   cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
-  --   build = 'cd app && yarn install',
-  --   init = function()
-  --     vim.g.mkdp_filetypes = { 'markdown' }
-  --   end,
   --   ft = { 'markdown' },
+  --   build = function()
+  --     vim.fn['mkdp#util#install']()
+  --   end,
   -- },
+
   {
     'toppair/peek.nvim',
     event = { 'VeryLazy' },
@@ -1042,7 +1121,7 @@ require('lazy').setup({
         -- Disable "format_on_save lsp_fallback" for languages that don't
         -- have a well standardized coding style. You can add additional
         -- languages here or re-enable it for the disabled ones.
-        local disable_filetypes = { c = true, cpp = true }
+        local disable_filetypes = { c = true, cpp = false }
         return {
           timeout_ms = 500,
           lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
@@ -1050,6 +1129,7 @@ require('lazy').setup({
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
+        nix = { 'nixpkgs-fmt' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
@@ -1180,7 +1260,7 @@ require('lazy').setup({
           --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
         },
         sources = {
-          { name = 'copilot' },
+          -- { name = 'copilot' },
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
           { name = 'path' },
@@ -1258,7 +1338,7 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc' },
+      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc', 'llvm' },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
