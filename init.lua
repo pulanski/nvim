@@ -91,7 +91,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 -- See `:help vim.opt`
@@ -209,6 +209,10 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+-- Keybinds to make vertical navigation smoother
+vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Move focus up half a window' })
+vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Move focus up half a window' })
+
 -- Close the current buffer and switch to the previous one
 vim.api.nvim_set_keymap('n', '<leader>bd', ':bp | bd #<CR>', { noremap = true, silent = true })
 
@@ -233,6 +237,21 @@ vim.api.nvim_create_autocmd('FileType', {
     vim.opt_local.shiftwidth = 2 -- Indentation uses 2 spaces
     vim.opt_local.expandtab = true -- Use spaces instead of tabs
     vim.opt_local.softtabstop = 2 -- Inserts/removes 2 spaces when pressing Tab/Backspace
+  end,
+})
+
+-- Autocmd to detach clangd for proto filetype
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'proto',
+  callback = function()
+    vim.defer_fn(function()
+      local clients = vim.lsp.get_clients()
+      for _, client in ipairs(clients) do
+        if client.name == 'clangd' then
+          vim.lsp.buf_detach_client(0, client.id)
+        end
+      end
+    end, 100)
   end,
 })
 
@@ -329,7 +348,22 @@ require('lazy').setup({
       -- or leave it empty to use the default settings
       -- refer to the configuration section below
       bigfile = { enabled = true },
-      dashboard = { enabled = true },
+      dashboard = {
+        enabled = true,
+        sections = {
+          {
+            section = 'terminal',
+            cmd = 'chafa ~/.config/wall.png --format symbols --symbols vhalf --size 60x17 --stretch',
+            height = 17,
+            padding = 1,
+          },
+          {
+            pane = 2,
+            { section = 'keys', gap = 1, padding = 1 },
+            { section = 'startup' },
+          },
+        },
+      },
       indent = { enabled = true },
       input = { enabled = true },
       notifier = { enabled = true },
@@ -374,6 +408,41 @@ require('lazy').setup({
         end,
         desc = 'Git Browse',
         mode = { 'n', 'v' },
+      },
+      {
+        '<leader>gb',
+        function()
+          Snacks.git.blame_line()
+        end,
+        desc = 'Git Blame Line',
+      },
+      {
+        '<leader>gf',
+        function()
+          Snacks.lazygit.log_file()
+        end,
+        desc = 'Lazygit Current File History',
+      },
+      {
+        '<leader>gg',
+        function()
+          Snacks.lazygit()
+        end,
+        desc = 'Lazygit',
+      },
+      {
+        '<leader>gl',
+        function()
+          Snacks.lazygit.log()
+        end,
+        desc = 'Lazygit Log (cwd)',
+      },
+      {
+        '<leader>un',
+        function()
+          Snacks.notifier.hide()
+        end,
+        desc = 'Dismiss All Notifications',
       },
     },
   },
@@ -498,7 +567,7 @@ require('lazy').setup({
           dotfiles = true,
         },
 
-        vim.keymap.set('n', '<leader>e', '<CMD>NvimTreeToggle<CR>', { desc = 'Toggle [N]vim [T]ree' }),
+        vim.keymap.set('n', '<leader>ee', '<CMD>NvimTreeToggle<CR>', { desc = 'Toggle [N]vim [T]ree' }),
       }
     end,
   },
@@ -707,11 +776,16 @@ require('lazy').setup({
         --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
         --   },
         -- },
-        -- pickers = {}
+        pickers = {
+          find_files = {
+            theme = 'ivy',
+          },
+        },
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
           },
+          fzf = {},
         },
       }
 
@@ -731,6 +805,13 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+
+      vim.keymap.set('n', '<leader>sp', function()
+        require('telescope.builtin').find_files {
+          ---@diagnostic disable-next-line: param-type-mismatch
+          cwd = vim.fs.joinpath(vim.fn.stdpath 'data', 'lazy'),
+        }
+      end, { desc = '[S]earch [P]lugins (Neovim)' })
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
@@ -904,7 +985,7 @@ require('lazy').setup({
       --  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
       --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
       local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+      -- capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
       -- Enable the following language servers
       --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
@@ -920,19 +1001,14 @@ require('lazy').setup({
         clangd = {
           settings = {
             init_options = {
-              fallbackFlags = { '--std=c++20' },
+              fallbackFlags = { '--std=c++23' },
             },
           },
         },
         zls = {
           settings = {
-            zls = {
-              enable_inlay_hints = true,
-              inlay_hints_show_builtin = true,
-              inlay_hints_exclude_single_argument = true,
-              inlay_hints_hide_redundant_param_names = false,
-              inlay_hints_hide_redundant_param_names_last_token = false,
-            },
+            cmd = { '~/.local/bin/zls' },
+            -- cmd = { '~/.local/share/nvim/mason/bin/zls' },
           },
         },
         gopls = {
@@ -1031,6 +1107,7 @@ require('lazy').setup({
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
+        'protols', -- Used for protobuf
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -1140,23 +1217,6 @@ require('lazy').setup({
     },
   },
 
-  {
-    'zbirenbaum/copilot-cmp',
-    event = 'InsertEnter',
-    config = function()
-      require('copilot_cmp').setup()
-    end,
-    dependencies = {
-      'zbirenbaum/copilot.lua',
-      cmd = 'Copilot',
-      config = function()
-        require('copilot').setup {
-          suggestion = { enabled = false },
-          panel = { enabled = false },
-        }
-      end,
-    },
-  },
   { -- Autocompletion
     'hrsh7th/nvim-cmp',
     event = 'InsertEnter',
@@ -1260,7 +1320,6 @@ require('lazy').setup({
           --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
         },
         sources = {
-          -- { name = 'copilot' },
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
           { name = 'path' },
