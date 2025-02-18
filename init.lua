@@ -1259,6 +1259,35 @@ require('lazy').setup({
       local luasnip = require 'luasnip'
       luasnip.config.setup {}
 
+      require('luasnip.loaders.from_lua').load { paths = { 'custom/snippets' } }
+
+      -- Load language-specific snippets
+
+      -- Zig
+      local zig_snippets = require 'custom.snippets.zig'
+      luasnip.add_snippets('zig', zig_snippets)
+
+      --[[ 
+          LuaSnip Key Mappings
+          --------------------
+          - <Tab>   : If a snippet can be expanded or jumped to, expand or jump to the next node.
+                      Otherwise, insert a literal Tab.
+          - <S-Tab> : Jump backwards in snippet nodes if possible.
+      ]]
+      vim.keymap.set({ 'i', 's' }, '<Tab>', function()
+        if luasnip.expand_or_jumpable() then
+          luasnip.expand_or_jump()
+        else
+          vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Tab>', true, true, true), 'n', true)
+        end
+      end, { silent = true })
+
+      vim.keymap.set({ 'i', 's' }, '<S-Tab>', function()
+        if luasnip.jumpable(-1) then
+          luasnip.jump(-1)
+        end
+      end, { silent = true })
+
       cmp.setup {
         snippet = {
           expand = function(args)
@@ -1320,8 +1349,8 @@ require('lazy').setup({
           --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
         },
         sources = {
-          { name = 'nvim_lsp' },
           { name = 'luasnip' },
+          { name = 'nvim_lsp' },
           { name = 'path' },
         },
       }
@@ -1437,10 +1466,10 @@ require('lazy').setup({
   --
   -- require 'kickstart.plugins.debug',
   require 'kickstart.plugins.indent_line',
-  -- require 'kickstart.plugins.lint',
+  require 'kickstart.plugins.lint',
   require 'kickstart.plugins.autopairs',
-  -- require 'kickstart.plugins.neo-tree',
-  -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
+  require 'kickstart.plugins.neo-tree',
+  require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
@@ -1469,6 +1498,9 @@ require('lazy').setup({
     },
   },
 })
+
+-- Snippets
+require 'custom.snippets'
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
